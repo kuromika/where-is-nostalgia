@@ -23,6 +23,7 @@ const Timer = (props) => {
 
     return (
         <div className="timer">
+            <h2>TIMER</h2>
             <Counter seconds={seconds}></Counter>
         </div>
     )
