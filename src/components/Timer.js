@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
+import Counter from "./Counter";
 
 
 const Timer = (props) => {
 
     const [seconds, setSeconds] = useState(0);
-    const minutes = Math.floor(seconds / 60);
-
 
     useEffect(() => {
 
@@ -23,10 +22,9 @@ const Timer = (props) => {
 
 
     return (
-        <>
-            <h1>{seconds - (60*minutes)} seconds</h1>
-            <h1> {minutes} minutes</h1>
-        </>
+        <div className="timer">
+            <Counter seconds={seconds}></Counter>
+        </div>
     )
 }
 
