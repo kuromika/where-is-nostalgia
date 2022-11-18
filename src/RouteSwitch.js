@@ -3,14 +3,15 @@ import {
     Routes,
     Route
 } from 'react-router-dom';
-import App from './App';
+import Layout from './Layout';
+import Home from './components/Home';
 
 const RouteSwitch = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<App/>}>
-
+                <Route path='/' element={<Layout />}>
+                    <Route index element={<Home />}></Route>
                 </Route>
             </Routes>
         </BrowserRouter>
