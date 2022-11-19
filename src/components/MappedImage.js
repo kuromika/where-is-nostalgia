@@ -7,6 +7,20 @@ const MappedImage = (props) => {
 
     useEffect(() => {
 
+        const image = imageRef.current;
+
+        const handleLoad = (e) => {
+            props.runTimer(true);
+        }
+
+        image.addEventListener('load', handleLoad);
+
+        return () => image.removeEventListener('load', handleLoad);
+
+    }, [props])
+
+    useEffect(() => {
+
         const handleClick = (e) => {
 
             const rect = e.target.getBoundingClientRect();

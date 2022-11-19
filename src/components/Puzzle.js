@@ -38,6 +38,7 @@ const Puzzle = (props) => {
                 updateOptions={props.updateOptions}
                 handleGuess={props.handleGuess}
                 options={props.options}
+                runTimer = {props.runTimer}
             > </MappedImage>
             {box}
         </div>  

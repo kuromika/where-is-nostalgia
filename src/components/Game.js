@@ -6,6 +6,7 @@ import { useState } from "react";
 const Game = () => {
 
     const [options, setOptions] = useState(['Black Mage', 'Snake', 'Raziel']);
+    const [isPuzzleReady, setIsPuzzleReady] = useState(false);
 
     const updateOptions = (guess) => {
         setOptions(options.filter((option) => option !== guess));
@@ -15,13 +16,14 @@ const Game = () => {
 
         <div className="game">
             <div className="info-panel">
-                <Timer run={true}></Timer>
+                <Timer run={isPuzzleReady}></Timer>
                 <Characters></Characters>
             </div>
             <Puzzle
                 handleGuess={(x, y) => console.log(x, y)}
                 options={options}
-                updateOptions = {updateOptions}
+                updateOptions={updateOptions}
+                runTimer = {setIsPuzzleReady}
             >
             </Puzzle>
         </div>
