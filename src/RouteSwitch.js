@@ -8,7 +8,9 @@ import Home from './components/Home';
 import Game from './components/Game';
 import Leaderboard from './components/Leaderboard';
 
+
 const RouteSwitch = () => {
+
     return (
         <BrowserRouter>
             <Routes>

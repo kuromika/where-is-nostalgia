@@ -3,7 +3,7 @@ import Loading from "./Loading"
 const WithLoading = (Component) => {
 
     return function WithLoadingComponent({ isLoading, ...props }) {
-        if (isLoading) {
+        if (!isLoading) {
             return <Loading></Loading>
         }
         return <Component {...props}></Component>

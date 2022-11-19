@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import Dropdown from './Dropdown';
+import '../styles/puzzle.css';
 
 const Puzzle = (props) => {
     
     const [imgSrc, setImgSrc] = useState('/');
+    const [dropdown, setDropdown] = useState(<></>);
     const imageRef = useRef();
 
     useEffect(() => {
@@ -20,6 +23,8 @@ const Puzzle = (props) => {
         
     }, []);
 
+
+
     useEffect(() => {
 
         const handleClick = (e) => {
@@ -29,8 +34,22 @@ const Puzzle = (props) => {
             const scaleY = e.height / rect.height;
             const x = Math.floor((e.clientX - rect.left) * scaleX * 100);
             const y = Math.floor((e.clientY - rect.top) * scaleY * 100);
-            props.handleGuess(x, y);
+
+            setDropdown(
+                <Dropdown
+                    options={props.options}
+                    style={{
+                        position:'absolute',
+                        top: `${e.clientY - rect.top}px`,
+                        left: `${e.clientX - rect.left}px`,
+                        zIndex: 2,
+                    }}
+                />
+            );
+
+
         }
+
         const image = imageRef.current;
 
         image.addEventListener('click', handleClick);
@@ -41,8 +60,9 @@ const Puzzle = (props) => {
 
 
     return (
-        <div className="puzzle">
-            <img style={{width: "100%"}} src={imgSrc} alt="puzzle" ref={imageRef}></img>
+        <div className="puzzle" style={{position: 'relative'}}>
+            <img src={imgSrc} alt="puzzle" ref={imageRef}></img>
+            {dropdown}
         </div>
     )
 }
