@@ -6,8 +6,14 @@ import '../styles/puzzle.css';
 const Puzzle = (props) => {
     
     const [imgSrc, setImgSrc] = useState('/');
-    const [dropdown, setDropdown] = useState(<></>);
+    const [box, setBox] = useState(<></>);
     const imageRef = useRef();
+
+
+    const updateBox = (component) => {
+        setBox(component);
+    }
+
 
     useEffect(() => {
 
@@ -32,21 +38,24 @@ const Puzzle = (props) => {
             const rect = e.target.getBoundingClientRect();
             const scaleX = e.width / rect.width;
             const scaleY = e.height / rect.height;
-            const x = Math.floor((e.clientX - rect.left) * scaleX * 100);
-            const y = Math.floor((e.clientY - rect.top) * scaleY * 100);
+            const convertedX = Math.floor((e.clientX - rect.left) * scaleX * 100);
+            const convertedY = Math.floor((e.clientY - rect.top) * scaleY * 100);
 
-            setDropdown(
+            updateBox(
                 <Dropdown
                     options={props.options}
                     style={{
-                        position:'absolute',
+                        position: 'absolute',
                         top: `${e.clientY - rect.top}px`,
                         left: `${e.clientX - rect.left}px`,
                         zIndex: 2,
                     }}
+                    click={props.update}
+                    updateBox={updateBox}
                 />
             );
 
+            props.handleGuess(convertedX, convertedY);
 
         }
 
@@ -62,7 +71,7 @@ const Puzzle = (props) => {
     return (
         <div className="puzzle" style={{position: 'relative'}}>
             <img src={imgSrc} alt="puzzle" ref={imageRef}></img>
-            {dropdown}
+            {box}
         </div>
     )
 }
