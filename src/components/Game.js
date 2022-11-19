@@ -12,6 +12,7 @@ const Game = () => {
         setOptions(options.filter((option) => option !== guess));
     }
 
+
     return (
 
         <div className="game">
