@@ -43,7 +43,7 @@ const MappedImage = (props) => {
                 />
             );
 
-            props.handleGuess(convertedX, convertedY);
+            props.saveCords(convertedX, convertedY);
 
         }
 
