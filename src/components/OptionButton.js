@@ -10,7 +10,6 @@ const OptionButton = (props) => {
 
         const handleClick = (e) => {
             props.updateOptions(e.target.textContent);
-            props.updateBox(null);
         }
 
         element.addEventListener('click', handleClick);

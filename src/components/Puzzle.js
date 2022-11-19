@@ -5,13 +5,6 @@ import MappedImage from "./MappedImage";
 const Puzzle = (props) => {
     
     const [imgSrc, setImgSrc] = useState('/');
-    const [box, setBox] = useState(null);
-
-
-    const updateBox = (component) => {
-        setBox(component);
-    }
-
 
     useEffect(() => {
 
@@ -34,13 +27,12 @@ const Puzzle = (props) => {
         <div className="puzzle" style={{ position: 'relative' }}>
             <MappedImage
                 src={imgSrc}
-                updateBox={updateBox}
                 updateOptions={props.updateOptions}
                 saveCords={props.saveCords}
                 options={props.options}
-                runTimer = {props.runTimer}
+                runTimer={props.runTimer}
             > </MappedImage>
-            {box}
+            {props.children}
         </div>  
     )
 }

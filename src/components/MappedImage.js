@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import Dropdown from './Dropdown';
 
 const MappedImage = (props) => {
 
@@ -29,21 +28,8 @@ const MappedImage = (props) => {
             const convertedX = Math.floor((e.clientX - rect.left) * scaleX * 100);
             const convertedY = Math.floor((e.clientY - rect.top) * scaleY * 100);
 
-            props.updateBox(
-                <Dropdown
-                    options={props.options}
-                    style={{
-                        position: 'absolute',
-                        top: `${e.clientY - rect.top}px`,
-                        left: `${e.clientX - rect.left}px`,
-                        zIndex: 2,
-                    }}
-                    updateOptions={props.updateOptions}
-                    updateBox={props.updateBox}
-                />
-            );
-
-            props.saveCords(convertedX, convertedY);
+            props.saveCords(convertedX, convertedY,
+                e.clientY - rect.top, e.clientX - rect.left);
 
         }
 
