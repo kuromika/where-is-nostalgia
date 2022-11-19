@@ -21,7 +21,7 @@ const Game = () => {
             <Puzzle
                 handleGuess={(x, y) => console.log(x, y)}
                 options={options}
-                update = {updateOptions}
+                updateOptions = {updateOptions}
             >
             </Puzzle>
         </div>

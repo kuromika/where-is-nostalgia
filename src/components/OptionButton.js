@@ -2,15 +2,15 @@ import { useEffect, useRef } from "react";
 
 const OptionButton = (props) => {
 
-    const buttonRef = useRef();
+    const buttonRef = useRef(null);
 
     useEffect(() => {
 
         const element = buttonRef.current;
 
         const handleClick = (e) => {
-            props.click(props.name);
-            props.updateBox(<></>);
+            props.updateOptions(e.target.textContent);
+            props.updateBox(null);
         }
 
         element.addEventListener('click', handleClick);
