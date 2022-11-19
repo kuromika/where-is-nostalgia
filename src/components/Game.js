@@ -9,7 +9,7 @@ const Game = () => {
                 <Timer run={true}></Timer>
                 <Characters></Characters>
             </div>
-            <Puzzle></Puzzle>
+            <Puzzle handleGuess={(x,y) => console.log(x,y)}></Puzzle>
         </div>
     )
 }

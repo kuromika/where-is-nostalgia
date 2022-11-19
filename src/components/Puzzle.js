@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
-const Puzzle = () => {
+const Puzzle = (props) => {
     
     const [imgSrc, setImgSrc] = useState('/');
+    const imageRef = useRef();
 
     useEffect(() => {
 
@@ -15,13 +16,33 @@ const Puzzle = () => {
         }
         
         fetchImage();
+
         
     }, []);
+
+    useEffect(() => {
+
+        const handleClick = (e) => {
+
+            const rect = e.target.getBoundingClientRect();
+            const scaleX = e.width / rect.width;
+            const scaleY = e.height / rect.height;
+            const x = Math.floor((e.clientX - rect.left) * scaleX * 100);
+            const y = Math.floor((e.clientY - rect.top) * scaleY * 100);
+            props.handleGuess(x, y);
+        }
+        const image = imageRef.current;
+
+        image.addEventListener('click', handleClick);
+
+        return () => image.removeEventListener('click',handleClick);
+
+    }, [props]);
 
 
     return (
         <div className="puzzle">
-            <img src={imgSrc} alt="puzzle"></img>
+            <img style={{width: "100%"}} src={imgSrc} alt="puzzle" ref={imageRef}></img>
         </div>
     )
 }
