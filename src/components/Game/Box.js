@@ -29,8 +29,9 @@ const Box = (props) => {
                 style={{
                     position: 'absolute',
                     top: '50%',
-                    left:'50%'
+                    left: '50%'
                 }}
+                handleClick={props.gameOver}
             />
         default:
             return null

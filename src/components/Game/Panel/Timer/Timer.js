@@ -13,12 +13,13 @@ const Timer = (props) => {
         }, 1000);
 
         if (!props.run) {
+            props.setScore(seconds);
             clearInterval(interval);
         };
 
         return () => clearInterval(interval);
 
-    }, [props.run]);
+    }, [props,seconds]);
 
 
     return (

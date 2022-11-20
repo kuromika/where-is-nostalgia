@@ -4,7 +4,7 @@ import Characters from "./Characters"
 const Panel = (props) => {
     return (
          <div className="info-panel">
-                <Timer run={props.runTimer}></Timer>
+                <Timer run={props.runTimer} setScore={props.setScore}></Timer>
                 <Characters></Characters>
         </div>
     )

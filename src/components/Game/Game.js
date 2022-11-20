@@ -1,6 +1,6 @@
 import Puzzle from "./Puzzle";
 import {useState} from "react";
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getFirestore } from 'firebase/firestore';
 import { getApp } from "firebase/app";
 import inRange from "../../util/inRange";
 import Box from "./Box";
@@ -13,6 +13,7 @@ const Game = () => {
     const [playerCords, setPlayerCords] = useState([]);
     const [userState, setUserState] = useState('');
     const [boxCords, setBoxCords] = useState([]);
+    const [score, setScore] = useState(0);
 
     const boxStyle = {
         position: 'absolute',
@@ -55,11 +56,24 @@ const Game = () => {
         setUserState('Incorrect');
     }
 
+    async function handleGameOver(nickname) {
+        
+        try {
+            await addDoc(collection(getFirestore(), 'scores'), {
+                player: nickname,
+                score: score
+            });
+        } catch (error) {
+            console.error('Error adding a new score', error);
+        }
+        
+    }
+
 
     return (
 
         <div className="game">
-            <Panel runTimer ={runTimer}></Panel>
+            <Panel runTimer ={runTimer} setScore ={setScore}></Panel>
             <Puzzle
                 saveCords={handleImageClick}
                 options={options}
@@ -71,6 +85,7 @@ const Game = () => {
                     update={updateOptions}
                     style={boxStyle}
                     options={options}
+                    gameOver={handleGameOver}
                 />
                 
             </Puzzle>
