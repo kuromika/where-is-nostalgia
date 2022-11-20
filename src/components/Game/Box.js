@@ -1,5 +1,6 @@
 import AlertBox from "../AlertBox"
 import Dropdown from "../Dropdown"
+import TextInput from "../TextInput"
 
 const Box = (props) => {
 
@@ -22,6 +23,14 @@ const Box = (props) => {
                 class='incorrect'
                 text='wrong'
                 style={props.style}
+            />
+        case 'Insert':
+            return <TextInput
+                style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left:'50%'
+                }}
             />
         default:
             return null

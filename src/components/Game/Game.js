@@ -46,11 +46,15 @@ const Game = () => {
         if (inRange(playerCords[0], cords.x) && inRange(playerCords[1], cords.y)) {
             setOptions(options.filter((option) => option !== guess));
             setUserState('Correct');
-            if (options.length-1 === 0) { setRunTimer(false)}
+            if (options.length - 1 === 0) {
+                setRunTimer(false)
+                setUserState('Insert');
+            }
             return;
         }
         setUserState('Incorrect');
     }
+
 
     return (
 
