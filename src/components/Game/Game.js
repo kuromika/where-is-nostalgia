@@ -66,6 +66,8 @@ const Game = () => {
         } catch (error) {
             console.error('Error adding a new score', error);
         }
+
+        setUserState('Over');
         
     }
 

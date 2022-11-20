@@ -26,7 +26,7 @@ const TextInput = (props) => {
 
     return (
         <div className="nickname-input" style={props.style}>
-            <input type="text" ref={inputRef}></input>
+            <input type="text" ref={inputRef} placeholder={props.placeholder}></input>
             <button type="button" ref={buttonRef}>submit score</button>
         </div>
     )

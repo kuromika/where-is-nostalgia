@@ -32,9 +32,12 @@ const Box = (props) => {
                     left: '50%'
                 }}
                 handleClick={props.gameOver}
+                placeholder='insert your nickname'
             />
+        case 'Over':
+            return null;
         default:
-            return null
+            return null;
     }
 }
 

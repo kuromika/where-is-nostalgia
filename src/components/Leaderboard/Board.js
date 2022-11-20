@@ -6,13 +6,20 @@ const Board = (props) => {
     return (
         <div className="scoreboard">
             <h2> Leaderboard </h2>
-            {props.scores.map((score, index) => {
-                return <Score key={index+1}
-                    rank={index+1}
-                    nickname={score.nickname}
-                    score = {score.time}
-                ></Score>
-            })}
+            <table>
+                <tr>
+                    <th>Rank</th>
+                    <th>Nickname</th>
+                    <th>Time</th>
+                </tr>
+                {props.scores.map((score, index) => {
+                    return <Score key={index+1}
+                        rank={index+1}
+                        nickname={score.player}
+                        score = {score.score}
+                    ></Score>
+                })}
+            </table>
         </div>
     )
 }

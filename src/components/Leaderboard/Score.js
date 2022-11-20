@@ -2,11 +2,11 @@
 const Score = (props) => {
 
     return (
-        <div className="score">
-            <span className="score-rank">{props.rank}</span>
-            <span className="score-name">{props.nickname}</span>
-            <span className="score-time">{props.score}</span>
-        </div>
+        <tr>
+            <td className="score-rank">{props.rank}</td>
+            <td className="score-name">{props.nickname}</td>
+            <td className="score-time">{props.score}</td>
+        </tr>
     )
 }
 
