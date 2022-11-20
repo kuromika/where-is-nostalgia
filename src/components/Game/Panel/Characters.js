@@ -1,15 +1,20 @@
+import useFetchImageURL from "../../../hooks/useFetchImageURL";
 import CharacterCard from "./CharacterCard";
 
 const Characters = () => {
 
+    const razielURL = useFetchImageURL('RazielPNG.png');
+    const snakeURL = useFetchImageURL('snakePNG.png');
+    const blackMageURL = useFetchImageURL('blackmagePNG.png');
+
     return (
         <div className="characters">
             <h2> Characters </h2>
-            <CharacterCard src='/' name='Raziel'></CharacterCard>
-            <CharacterCard src='/' name='Black Mage'></CharacterCard>
-            <CharacterCard src='/' name='Snake'></CharacterCard>
+            <CharacterCard src={razielURL} name='Raziel'></CharacterCard>
+            <CharacterCard src={snakeURL} name='Black Mage'></CharacterCard>
+            <CharacterCard src={blackMageURL} name='Snake'></CharacterCard>
         </div>
     )
 }
 
-export default Characters;
+export default Characters;  

@@ -1,4 +1,4 @@
-import useFetchImageURL from "../../hooks/useFetchImage";
+import useFetchImageURL from "../../hooks/useFetchImageURL";
 import MappedImage from "./MappedImage";
 
 const Puzzle = (props) => {
