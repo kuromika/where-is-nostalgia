@@ -1,58 +1,51 @@
 import Timer from "./Timer";
 import Characters from "./Characters"
 import Puzzle from "./Puzzle";
-import { useState } from "react";
+import {useState} from "react";
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { getApp } from "firebase/app";
 import inRange from "../util/inRange";
-import Dropdown from "./Dropdown";
+import Box from "./Box";
 
 const Game = () => {
 
     const [options, setOptions] = useState(['Black Mage', 'Snake', 'Raziel']);
-    const [playerGuess, setPlayerGuess] = useState([0,0]);
     const [isPuzzleReady, setIsPuzzleReady] = useState(false);
-    const [box, setBox] = useState(null);
+    const [playerCords, setPlayerCords] = useState([]);
+    const [userState, setUserState] = useState('');
+    const [boxCords, setBoxCords] = useState([]);
 
-   
+    const boxStyle = {
+        position: 'absolute',
+        zIndex: '2',
+        top: `${boxCords[0]}px`,
+        left: `${boxCords[1]}px`
+    }
 
-    const handleGuess = (x, y, top, left) => {
-          setBox(
-                <Dropdown
-                    options={options}
-                    style={{
-                        position: 'absolute',
-                        top: `${top}px`,
-                        left: `${left}px`,
-                        zIndex: 2,
-                    }}
-                    updateOptions={updateOptions}
-              />
-          );
-        setPlayerGuess([x, y]);
+     const handleImageClick = (x, y, top, left) => {
+        setPlayerCords([x, y]);
+        setBoxCords([top, left]);
+        setUserState('Dropdown');
     }
 
     async function getDBCords(character) {
-
         const db = getFirestore(getApp());
-        const docRef = doc(db, "characters", "fmIlO0ocTPRVph6ufJ6p");
+        const docRef = doc(db, "characters", character);
         const docSnap = await getDoc(docRef);
         const data = docSnap.data();
-        return data[character];
-
+        return data;
     }
-
-    async function updateOptions(guess){
+    
+    async function updateOptions(guess) {
 
         const cords = await getDBCords(guess);
 
-        console.log(cords);
-
-        console.log(inRange(playerGuess[0], cords[0], cords[1])
-            && inRange(playerGuess[1], cords[2], cords[3])
-        );
-        
-        setOptions(options.filter((option) => option !== guess));
+        if (inRange(playerCords[0], cords.x) && inRange(playerCords[1], cords.y)) {
+            setOptions(options.filter((option) => option !== guess));
+            setUserState('Correct');
+            return;
+        }
+        setUserState('Incorrect');
     }
 
     return (
@@ -63,12 +56,18 @@ const Game = () => {
                 <Characters></Characters>
             </div>
             <Puzzle
-                saveCords={handleGuess}
+                saveCords={handleImageClick}
                 options={options}
                 updateOptions={updateOptions}
                 runTimer = {setIsPuzzleReady}
             >
-                {box}
+                <Box
+                    userState={userState}
+                    update={updateOptions}
+                    style={boxStyle}
+                    options={options}
+                />
+                
             </Puzzle>
         </div>
     )
