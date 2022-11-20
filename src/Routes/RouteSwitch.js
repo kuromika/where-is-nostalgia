@@ -3,11 +3,10 @@ import {
     Routes,
     Route
 } from 'react-router-dom';
-import Layout from './Layout';
-import Home from './components/Home';
-import Game from './components/Game';
-import Leaderboard from './components/Leaderboard';
-
+import Layout from '../Layout';
+import Home from '../components/Home/Home';
+import Game from '../components/Game/Game';
+import Leaderboard from '../components/Leaderboard/Leaderboard';
 
 const RouteSwitch = () => {
 

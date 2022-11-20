@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import RouteSwitch from './RouteSwitch';
+import RouteSwitch from './Routes/RouteSwitch';
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {

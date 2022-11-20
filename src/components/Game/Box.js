@@ -1,5 +1,5 @@
-import AlertBox from "./AlertBox"
-import Dropdown from "./Dropdown"
+import AlertBox from "../AlertBox"
+import Dropdown from "../Dropdown"
 
 const Box = (props) => {
 

@@ -1,11 +1,10 @@
-import Timer from "./Timer";
-import Characters from "./Characters"
 import Puzzle from "./Puzzle";
 import {useState} from "react";
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
 import { getApp } from "firebase/app";
-import inRange from "../util/inRange";
+import inRange from "../../util/inRange";
 import Box from "./Box";
+import Panel from "./Panel/Panel";
 
 const Game = () => {
 
@@ -56,10 +55,7 @@ const Game = () => {
     return (
 
         <div className="game">
-            <div className="info-panel">
-                <Timer run={runTimer}></Timer>
-                <Characters></Characters>
-            </div>
+            <Panel runTimer ={runTimer}></Panel>
             <Puzzle
                 saveCords={handleImageClick}
                 options={options}
