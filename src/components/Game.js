@@ -10,7 +10,7 @@ import Box from "./Box";
 const Game = () => {
 
     const [options, setOptions] = useState(['Black Mage', 'Snake', 'Raziel']);
-    const [isPuzzleReady, setIsPuzzleReady] = useState(false);
+    const [runTimer, setRunTimer] = useState(false);
     const [playerCords, setPlayerCords] = useState([]);
     const [userState, setUserState] = useState('');
     const [boxCords, setBoxCords] = useState([]);
@@ -43,6 +43,7 @@ const Game = () => {
         if (inRange(playerCords[0], cords.x) && inRange(playerCords[1], cords.y)) {
             setOptions(options.filter((option) => option !== guess));
             setUserState('Correct');
+            if (options.length-1 === 0) { setRunTimer(false)}
             return;
         }
         setUserState('Incorrect');
@@ -52,14 +53,14 @@ const Game = () => {
 
         <div className="game">
             <div className="info-panel">
-                <Timer run={isPuzzleReady}></Timer>
+                <Timer run={runTimer}></Timer>
                 <Characters></Characters>
             </div>
             <Puzzle
                 saveCords={handleImageClick}
                 options={options}
                 updateOptions={updateOptions}
-                runTimer = {setIsPuzzleReady}
+                runTimer = {setRunTimer}
             >
                 <Box
                     userState={userState}
