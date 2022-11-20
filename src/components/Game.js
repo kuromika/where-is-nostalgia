@@ -29,11 +29,15 @@ const Game = () => {
     }
 
     async function getDBCords(character) {
-        const db = getFirestore(getApp());
-        const docRef = doc(db, "characters", character);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data();
-        return data;
+        try {
+            const db = getFirestore(getApp());
+            const docRef = doc(db, "characters", character);
+            const docSnap = await getDoc(docRef);
+            const data = docSnap.data();
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     async function updateOptions(guess) {
