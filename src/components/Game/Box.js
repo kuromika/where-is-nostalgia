@@ -28,8 +28,7 @@ const Box = (props) => {
             return <TextInput
                 style={{
                     position: 'absolute',
-                    top: '50%',
-                    left: '50%'
+                    top:'0'
                 }}
                 handleClick={props.gameOver}
                 placeholder='insert your nickname'

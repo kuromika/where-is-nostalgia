@@ -9,10 +9,9 @@ const Characters = () => {
 
     return (
         <div className="characters">
-            <h2> Characters </h2>
             <CharacterCard src={razielURL} name='Raziel'></CharacterCard>
-            <CharacterCard src={snakeURL} name='Black Mage'></CharacterCard>
-            <CharacterCard src={blackMageURL} name='Snake'></CharacterCard>
+            <CharacterCard src={blackMageURL} name='Black Mage'></CharacterCard>
+            <CharacterCard src={snakeURL} name='Snake'></CharacterCard>
         </div>
     )
 }

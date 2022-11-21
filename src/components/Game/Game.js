@@ -5,6 +5,7 @@ import { getApp } from "firebase/app";
 import inRange from "../../util/inRange";
 import Box from "./Box";
 import Panel from "./Panel/Panel";
+import '../../styles/game.css';
 
 const Game = () => {
 
