@@ -2,6 +2,7 @@ import { collection, getDocs, getFirestore, limit, orderBy, query } from "fireba
 import { useEffect, useState } from "react";
 import Board from "./Board";
 import WithLoading from "../WithLoading";
+import '../../styles/leaderboard.css';
 
 const BoardWithLoading = WithLoading(Board);
 
