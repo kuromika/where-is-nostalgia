@@ -40,8 +40,6 @@ const Game = () => {
                 snapshot.forEach((doc) => {
                     elements[doc.id] = doc.data();
                 });
-
-                console.log(elements);
                 setCords(elements);
             
             } catch (error) {
