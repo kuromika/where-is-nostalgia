@@ -92,28 +92,51 @@
     justify-content: center;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 20px;
 }
 
 .nickname-input h2{
     color:white;
+    font-size: 10vw;
 }
 
 .nickname-input input[type='text']{
-    padding: 5px;
+    padding: 10px;
     font-size: medium;
+    border: 1px solid black;
+    border-radius: 20px;
 }
 
 .nickname-input button{
-    padding: 3px;
+    padding: 10px;
     font-size: large;
+    font-weight: 400;
     background-color: #b4c1bf;
 }
 
+.game .home-button {
+    height: 50px;
+    width: 70px;
+    background-color: black;
+    border: 3px solid #92cddb;
+    color:#92cddb;
+    font-weight: 900;
+    font-size: large;
+}
+
+.game .home-button:active{
+    background-color: #b4c1bf;
+}
 @media only screen and (max-width:600px){
 
     .character-card img{
         height: 5vh;
+    }
+
+    .game .home-button{
+        width: 40px;
+        height: 40px;
+        font-size: small;
     }
 
     .timer{
@@ -133,3 +156,4 @@
     }
 
 }
+

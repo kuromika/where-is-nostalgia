@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Board from "./Board";
 import WithLoading from "../WithLoading";
 import '../../styles/leaderboard.css';
+import HomeButton from "../HomeButton";
 
 const BoardWithLoading = WithLoading(Board);
 
@@ -38,6 +39,7 @@ const Leaderboard = () => {
     return (
         <div className="leaderboard">
             <BoardWithLoading isLoading={loading} scores={scores}></BoardWithLoading>
+            {loading ? null : <HomeButton text='Home'></HomeButton>}
         </div>
     )
 }
