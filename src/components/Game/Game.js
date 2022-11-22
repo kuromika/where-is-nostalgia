@@ -1,7 +1,6 @@
 import Puzzle from "./Puzzle";
-import {useState} from "react";
-import { addDoc, collection, doc, getDoc, getFirestore } from 'firebase/firestore';
-import { getApp } from "firebase/app";
+import {useEffect, useState} from "react";
+import { addDoc, collection, getDocs, getFirestore, query } from 'firebase/firestore';
 import inRange from "../../util/inRange";
 import Box from "./Box";
 import Panel from "./Panel/Panel";
@@ -10,6 +9,7 @@ import '../../styles/game.css';
 const Game = () => {
 
     const [options, setOptions] = useState(['Black Mage', 'Snake', 'Raziel']);
+    const [cords, setCords] = useState({});
     const [runTimer, setRunTimer] = useState(false);
     const [playerCords, setPlayerCords] = useState([]);
     const [userState, setUserState] = useState('');
@@ -29,23 +29,33 @@ const Game = () => {
         setUserState('Dropdown');
     }
 
-    async function getDBCords(character) {
-        try {
-            const db = getFirestore(getApp());
-            const docRef = doc(db, "characters", character);
-            const docSnap = await getDoc(docRef);
-            const data = docSnap.data();
-            return data;
-        } catch (error) {
-            console.log(error);
+    useEffect(() => {
+
+        async function getDBCords() {
+            try {
+                const q = query(collection(getFirestore(), 'characters'));
+                const snapshot = await getDocs(q);
+                const elements = {};
+
+                snapshot.forEach((doc) => {
+                    elements[doc.id] = doc.data();
+                });
+
+                console.log(elements);
+                setCords(elements);
+            
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+
+        getDBCords();
+
+    }, []);
     
     async function updateOptions(guess) {
 
-        const cords = await getDBCords(guess);
-
-        if (inRange(playerCords[0], cords.x) && inRange(playerCords[1], cords.y)) {
+        if (inRange(playerCords[0], cords[guess].x) && inRange(playerCords[1], cords[guess].y)) {
             setOptions(options.filter((option) => option !== guess));
             setUserState('Correct');
             if (options.length - 1 === 0) {
