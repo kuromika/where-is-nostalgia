@@ -43,9 +43,10 @@
     height: 100px;
 }
 
+.puzzle{display: flex;}
+
 .puzzle img{
     width: 100%;
-    min-height: 100vh;
 }
 
 .dropdown{
@@ -54,7 +55,7 @@
 }
 
 .dropdown button{
-    font-weight: 900;
+    font-weight: 400;
     background-color: #b4c1bf;
     padding: 10px;
 }

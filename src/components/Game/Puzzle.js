@@ -3,7 +3,7 @@ import MappedImage from "./MappedImage";
 
 const Puzzle = (props) => {
 
-    const imgURL = useFetchImageURL('ps1-cut.png');
+    const imgURL = useFetchImageURL('ps1-phone.jpg');
 
     return (
         <div className="puzzle" style={{ position: 'relative' }}>

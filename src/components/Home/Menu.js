@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-const Menu = () => {
+const Menu = (props) => {
 
     return (
-        <div className="Menu">
-            <img src="/" alt="/"></img> 
+        <div className="menu">
+            <img src={props.logo} alt="PS1 Logo"></img> 
             <div className="menu-buttons">
                 <Link to='game'>
                     <button type="button" id="play-button"> Play </button>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 const useFetchImageURL = (imageName) => {
 
-    const [imgSrc, setImgSrc] = useState('/');
+    const [imgSrc, setImgSrc] = useState('');
 
     useEffect(() => {
 
