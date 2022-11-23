@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+It has been tested and works fine in Chrome Version 107.0.5304.110 (Official Build) (64-bit) and Chrome in Android, but seems to not be working as intended in Desktop Firefox.
+
 ## Available Scripts
 
 In the project directory, you can run:
